@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { cancelButtonStyle } from '../Styles/tablestyles';
+import '../Styles/TableStyles.css';
 
 const UserForm = ({ onSubmit, initialData = {}, isEditing = false, onCancel }) => {
     const [formData, setFormData] = useState({

@@ -1,6 +1,6 @@
 import React from 'react';
 import UserRow from './UserRow';
-import { tableHeaderStyle, noUsersCellStyle } from '../Styles/tablestyles';
+import '../Styles/TableStyles.css';
 
 const UserTable = ({ users, onEdit, onDelete, onUpdate, onCancelEdit, editingId }) => {
     if (users.length === 0) {
@@ -8,7 +8,7 @@ const UserTable = ({ users, onEdit, onDelete, onUpdate, onCancelEdit, editingId 
             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <tbody>
                     <tr>
-                        <td colSpan="5" style={noUsersCellStyle}>
+                        <td colSpan="5" className='noUsersCellStyle'>
                             Nincsenek felhasználók az adatbázisban.
                         </td>
                     </tr>
@@ -21,11 +21,11 @@ const UserTable = ({ users, onEdit, onDelete, onUpdate, onCancelEdit, editingId 
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
                 <tr>
-                    <th style={tableHeaderStyle}>#ID</th>
-                    <th style={tableHeaderStyle}>Név</th>
-                    <th style={tableHeaderStyle}>Email</th>
-                    <th style={tableHeaderStyle}>Regisztráció</th>
-                    <th style={tableHeaderStyle}>Műveletek</th>
+                    <th className='tableHeaderStyle'>#ID</th>
+                    <th className='tableHeaderStyle'>Név</th>
+                    <th className='tableHeaderStyle'>Email</th>
+                    <th className='tableHeaderStyle'>Regisztráció</th>
+                    <th className='tableHeaderStyle'>Műveletek</th>
                 </tr>
             </thead>
             <tbody>

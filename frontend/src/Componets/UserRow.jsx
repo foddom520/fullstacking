@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { tableCellStyle, saveButtonStyle, cancelButtonStyle, editButtonStyle, deleteButtonStyle } from '../Styles/tablestyles';
+import '../Styles/TableStyles.css';
 
 const UserRow = ({ user, isEditing, onEdit, onDelete, onUpdate, onCancelEdit }) => {
     const [editData, setEditData] = useState({
@@ -39,10 +39,10 @@ const UserRow = ({ user, isEditing, onEdit, onDelete, onUpdate, onCancelEdit }) 
 
     return (
         <tr>
-            <td style={tableCellStyle}>{user.id}</td> 
+            <td className='tableCellStyle'>{user.id}</td> 
             {isEditing ? (
                 <>
-                    <td style={tableCellStyle}>
+                    <td className='tableCellStyle'>
                         <input
                             type="text"
                             name="name"
@@ -50,7 +50,7 @@ const UserRow = ({ user, isEditing, onEdit, onDelete, onUpdate, onCancelEdit }) 
                             onChange={handleEditChange}
                         />
                     </td>
-                    <td style={tableCellStyle}>
+                    <td className='tableCellStyle'>
                         <input
                             type="email"
                             name="email"
@@ -61,29 +61,29 @@ const UserRow = ({ user, isEditing, onEdit, onDelete, onUpdate, onCancelEdit }) 
                 </>
             ) : (
                 <>
-                    <td style={tableCellStyle}>{user.name}</td>
-                    <td style={tableCellStyle}>{user.email}</td>
+                    <td className='tableCellStyle'>{user.name}</td>
+                    <td className='tableCellStyle'>{user.email}</td>
                 </>
             )}
             
-            <td style={tableCellStyle}>{new Date(user.created_at).toLocaleDateString()}</td>
+            <td className='tableCellStyle'>{new Date(user.created_at).toLocaleDateString()}</td>
 
-            <td style={tableCellStyle}>
+            <td className='tableCellStyle'>
                 {isEditing ? (
                     <>
-                        <button onClick={handleUpdate} style={saveButtonStyle}>
+                        <button onClick={handleUpdate} className='editButtonStyle'>
                             Mentés
                         </button>
-                        <button onClick={onCancelEdit} style={cancelButtonStyle}>
+                        <button onClick={onCancelEdit} className='deleteButtonStyle'>
                             Mégse
                         </button>
                     </>
                 ) : (
                     <>
-                        <button onClick={() => onEdit(user)} style={editButtonStyle}>
+                        <button onClick={() => onEdit(user)} className='editButtonStyle'>
                             Szerkesztés
                         </button>
-                        <button onClick={handleDelete} style={deleteButtonStyle}>
+                        <button onClick={handleDelete} className='deleteButtonStyle'>
                             Törlés
                         </button>
                     </>

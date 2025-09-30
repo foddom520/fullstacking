@@ -1,0 +1,39 @@
+.tableHeaderStyle { 
+    border: '1px solid #ccc'; 
+    padding: '10px'; 
+    background-color: '#f0f0f0' };
+.tableCellStyle { 
+    border: '1px solid #ccc';
+    padding: '10px';
+    text-align: 'left' };
+.noUsersCellStyle { 
+    border: '1px solid #ccc';
+    padding: '10px';
+    text-align: 'center' };
+.saveButtonStyle { 
+    padding: '5px'; 
+    background-color: '#4CAF50'; 
+    color: 'white'; 
+    border: 'none'; 
+    cursor: 'pointer';
+    margin-right: '5px' };
+.cancelButtonStyle { 
+    padding: '5px'; 
+    background-color: '#9E9E9E'; 
+    color: 'white'; 
+    border: 'none'; 
+    cursor: 'pointer' };
+.editButtonStyle { 
+    padding: '5px'; 
+    background-color: '#2196F3'; 
+    color: 'white'; 
+    border: 'none'; 
+    cursor: 'pointer'; 
+    margin-right: '5px' };
+.deleteButtonStyle { 
+    padding: '5px'; 
+    background-color: '#F44336'; 
+    color: 'white'; 
+    border: 'none'; 
+    cursor: 'pointer'
+};
