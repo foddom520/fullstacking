@@ -1,205 +1,158 @@
-# Felhasználókezelő Alkalmazás (Full-Stack CRUD)
+# Felhasználókezelő Alkalmazás – Oktató Projekt (Full-Stack CRUD)
 
-Egy teljes körű **React + Node.js** alkalmazás felhasználók kezelésére, amely támogatja a **CRUD** (Create, Read, Update, Delete) műveleteket.
-
----
-
-## 🚀 Funkcionalitások
-
-* **Felhasználók listázása** – Összes felhasználó megjelenítése táblázatos formában
-* **Új felhasználó hozzáadása** – Űrlap segítségével új felhasználók regisztrálása
-* **Felhasználók szerkesztése** – Inline szerkesztés közvetlenül a táblázatban
-* **Felhasználók törlése** – Biztonsági megerősítéssel ellátott törlés
-* **Valós idejű frissítés** – Automatikus lista frissítés minden művelet után
-* **Hibakezelés** – Átfogó hibakezelés frontend és backend oldalon
+Ez a projekt egy **React (Vite) + Node.js + MySQL** alapú teljes körű CRUD (Create, Read, Update, Delete) alkalmazás.
+A cél nemcsak egy működő felhasználókezelő rendszer létrehozása, hanem az is, hogy **lépésről lépésre megértsd**, hogyan épül fel egy modern full-stack alkalmazás.
 
 ---
 
-## 🛠️ Technológiák
+## 🎯 Miért hasznos ez a projekt?
+
+* Megérted, hogyan működnek a **CRUD műveletek** (létrehozás, olvasás, frissítés, törlés).
+* Látod, hogyan beszélget egymással a **frontend** (React + Vite) és a **backend** (Node.js + Express).
+* Gyakorolhatod az **adatbáziskezelést** (MySQL).
+* Megtanulod, hogyan kell **hibákat kezelni** és hogyan lehet **valós idejű frissítéseket** elérni.
+
+---
+
+## 🛠️ Technológiák és szerepük
 
 ### Frontend
 
-* React – Modern UI könyvtár
-* Axios – HTTP kliens
-* CSS – Egyedi stílusozás
-* Custom Hooks – Újrafelhasználható logika
+* **React (Vite)** – gyors fejlesztői környezet és komponens alapú UI.
+* **Axios** – HTTP kérések küldésére a backend felé.
+* **Custom Hooks** – logika újrafelhasználásához (pl. `useUsers`).
 
 ### Backend
 
-* Node.js – Szerver oldali runtime
-* Express.js – Webalkalmazás keretrendszer
-* MySQL – Relációs adatbázis
-* CORS – Cross-Origin Resource Sharing
-* mysql2/promise – MySQL adatbázis driver
+* **Node.js** – JavaScript futtatókörnyezet a szerverhez.
+* **Express.js** – egyszerű eszköz API útvonalak készítéséhez.
+* **MySQL** – relációs adatbázis a felhasználók tárolásához.
+* **mysql2/promise** – adatbázis driver `async/await` támogatással.
+* **CORS** – biztosítja, hogy a frontend és a backend más portokról is tudjon kommunikálni.
 
 ---
 
 ## 📁 Projekt Struktúra
 
 ```
-src/
-├── components/
-│   ├── UserForm.jsx      # Új felhasználó hozzáadása/szerkesztése
-│   ├── UserTable.jsx     # Felhasználók táblázatos megjelenítése
-│   ├── UserRow.jsx       # Egyedi felhasználó sor komponens
-│   ├── Loading.jsx       # Betöltés indikátor
-│   └── Error.jsx         # Hibaüzenet megjelenítő
-├── hooks/
-│   └── useUsers.js       # Custom hook felhasználók kezelésére
-├── styles/
-│   ├── tableStyles.css   # Táblázat stílusok
-│   ├── App.css           # Fő alkalmazás stílusok
-│   └── index.css         # Globális stílusok
-└── App.js                # Fő alkalmazás komponens
+project-root/
+├── frontend/
+│   └── src/
+│       ├── components/
+│       │   ├── App.jsx          # fő alkalmazás komponens
+│       │   ├── UserForm.jsx     # űrlap új/szerkesztett felhasználóhoz
+│       │   ├── UserTable.jsx    # táblázat az összes felhasználóhoz
+│       │   ├── UserRow.jsx      # egyetlen felhasználó sora
+│       │   ├── Loading.jsx      # betöltés kijelző
+│       │   └── Error.jsx        # hibaüzenet kijelző
+│       ├── hooks/
+│       │   └── useUsers.js      # saját hook a felhasználók kezelésére
+│       ├── styles/
+│       │   └── tableStyles.js   # táblázat stílusai
+│       └── index.js             # frontend belépési pontja (Vite kezeli)
+├── backend/
+│   └── server.js                # backend belépési pontja
+└── db.sql                       # adatbázis létrehozásához szükséges SQL script
 ```
+
+👉 A `db.sql` fájl tartalmazza az adatbázis és a `users` tábla létrehozásához szükséges SQL parancsokat.
 
 ---
 
-## ⚙️ Telepítés és Futtatás
+## ⚙️ Telepítés és futtatás
 
-### Előfeltételek
+### 1. Előkészületek
 
-* Node.js (v14 vagy újabb)
-* MySQL szerver
-* npm vagy yarn
+* Telepítsd a [Node.js](https://nodejs.org/) aktuális verzióját.
+* Telepíts egy [MySQL szervert](https://dev.mysql.com/downloads/).
 
-### Backend Beállítás
+---
 
-1. Backend könyvtár létrehozása és függőségek telepítése:
+### 2. Adatbázis
+
+1. Nyisd meg a MySQL klienst (pl. `mysql -u root -p`).
+2. Futtasd a `db.sql` fájl tartalmát:
 
    ```bash
-   mkdir backend
+   source db.sql;
+   ```
+
+   Ez létrehozza a `users` adatbázist és a megfelelő táblát.
+
+---
+
+### 3. Backend (szerver)
+
+1. Lépj a `backend` mappába, majd telepítsd a szükséges csomagokat:
+
+   ```bash
    cd backend
    npm init -y
    npm install express mysql2 cors
    ```
 
-2. Adatbázis konfigurálása:
-
-   ```sql
-   CREATE DATABASE users;
-
-   USE users;
-
-   CREATE TABLE users (
-       id INT AUTO_INCREMENT PRIMARY KEY,
-       name VARCHAR(100) NOT NULL,
-       email VARCHAR(100) NOT NULL,
-       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-   );
-   ```
-
-3. Backend indítása:
+2. Indítsd el a szervert:
 
    ```bash
    node server.js
    ```
 
-   A backend a **[http://localhost:3001](http://localhost:3001)** címen fog futni.
+   A backend mostantól a **[http://localhost:3001](http://localhost:3001)** címen fut.
 
-### Frontend Beállítás
+---
 
-1. Függőségek telepítése:
+### 4. Frontend (Vite + React)
+
+1. Lépj a `frontend` mappába:
 
    ```bash
-   npm install axios
+   cd frontend
    ```
 
-2. Frontend indítása:
+2. Telepítsd a szükséges csomagokat:
+
+   ```bash
+   npm install
+   ```
+
+3. Indítsd el a fejlesztői szervert:
 
    ```bash
    npm run dev
    ```
 
-   A frontend a **[http://localhost:5173](http://localhost:5173)** címen érhető el (vagy a konfigurált porton).
+   A frontend a **[http://localhost:5173](http://localhost:5173)** címen érhető el.
 
 ---
 
-## 🔧 Konfiguráció
+## 🌐 Hogyan kommunikál a rendszer?
 
-**Backend konfiguráció (`server.js`):**
-
-```javascript
-const dbPool = mysql.createPool({
-    host: 'localhost',      // Adatbázis szerver
-    user: 'root',           // Felhasználónév
-    password: '',           // Jelszó
-    database: 'users',      // Adatbázis név
-    port: 3307,             // MySQL port
-});
-```
+1. A felhasználó kitölti az űrlapot (név, email) a frontend oldalon.
+2. A React komponens (`UserForm`) az adatokat az **Axios** segítségével elküldi a backendnek.
+3. Az **Express.js** útvonal (pl. `POST /api/users`) fogadja a kérést.
+4. Az útvonal beszúrja az adatokat a **MySQL adatbázisba**.
+5. Az adatbázis választ küld → Express továbbítja → React frissíti a listát.
 
 ---
 
 ## 🌐 API Végpontok
 
-* `GET /api/users` – Összes felhasználó lekérése
-* `POST /api/users` – Új felhasználó létrehozása
-* `PATCH /api/users/:id` – Felhasználó frissítése
-* `DELETE /api/users/:id` – Felhasználó törlése
+* `GET /api/users` – összes felhasználó lekérése
+* `POST /api/users` – új felhasználó létrehozása
+* `PATCH /api/users/:id` – meglévő felhasználó frissítése
+* `DELETE /api/users/:id` – felhasználó törlése
 
 ---
 
-## 🎯 Használat
+## 📚 Mit tanulhatsz ebből a projektből?
 
-* **Felhasználók megtekintése** – Az alkalmazás betöltése után automatikusan megjelenik a felhasználók listája.
-* **Új felhasználó hozzáadása** – Töltse ki a név és email mezőket, majd kattintson a *Hozzáadás* gombra.
-* **Felhasználó szerkesztése** – Kattintson a *Szerkesztés* gombra, módosítsa az adatokat, majd kattintson a *Mentés* gombra.
-* **Felhasználó törlése** – Kattintson a *Törlés* gombra, majd erősítse meg a törlést.
-
----
-
-## 🐛 Hibakezelés
-
-Az alkalmazás a következő hibákat kezeli:
-
-* Adatbázis kapcsolat megszakadása
-* Érvénytelen adatok
-* Hálózati problémák
-* Szerver hibák
-
----
-
-## 🔮 Fejlesztési lehetőségek
-
-* Validáció kiterjesztése
-* Keresés és szűrés funkció
-* Oldaltördelés (pagination)
-* Felhasználói profilok
-* Jelszó kezelés
-* Jogosultság kezelés
-* Unit tesztek
-
----
-
-## 👥 Hozzájárulás
-
-1. Forkolja a repository-t
-2. Hozzon létre egy feature branch-et:
-
-   ```bash
-   git checkout -b feature/uj-funkcio
-   ```
-3. Commitolja a változtatásokat:
-
-   ```bash
-   git commit -m "Új funkció hozzáadása"
-   ```
-4. Pusholja a branch-et:
-
-   ```bash
-   git push origin feature/uj-funkcio
-   ```
-5. Nyisson egy Pull Request-et
+* Hogyan működik egy **full-stack alkalmazás**.
+* Hogyan beszélget egymással a **frontend és a backend**.
+* Hogyan lehet **adatbázist kezelni** egy webes alkalmazásban.
+* Miért fontos a **kód strukturálása** és a **hibakezelés**.
 
 ---
 
 ## 📄 Licenc
 
-Ez a projekt **MIT licenc** alatt áll.
-
----
-
-## 📞 Kapcsolat
-
-Ha bármilyen kérdése van, kérjük nyisson egy *issue*-t a GitHub repository-ban.
+Ez a projekt MIT licenc alatt áll. Szabadon felhasználható tanulásra és fejlesztésre.
