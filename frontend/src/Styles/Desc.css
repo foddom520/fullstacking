@@ -1,0 +1,124 @@
+/* desc.css */
+.description-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+  }
+  
+  .description-container h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+  }
+  
+  .description-container h2 {
+    color: #34495e;
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+  
+  .project-overview {
+    background: #ecf0f1;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .tech-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .tech-section {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .tech-section h3 {
+    color: #2980b9;
+    margin-bottom: 10px;
+  }
+  
+  .operations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .operation {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-left: 4px solid #3498db;
+  }
+  
+  .operation h3 {
+    margin: 0 0 10px 0;
+    color: #2c3e50;
+  }
+  
+  .features ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .features li {
+    padding: 8px 0;
+    border-bottom: 1px solid #ecf0f1;
+  }
+  
+  .arch-flow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .arch-step {
+    flex: 1;
+    text-align: center;
+    padding: 15px;
+  }
+  
+  .arch-arrow {
+    font-size: 24px;
+    color: #3498db;
+    font-weight: bold;
+  }
+  
+  .single-file-note {
+    background: #fff3cd;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #ffc107;
+  }
+  
+  @media (max-width: 768px) {
+    .tech-grid,
+    .operations-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .arch-flow {
+      flex-direction: column;
+    }
+    
+    .arch-arrow {
+      transform: rotate(90deg);
+      margin: 10px 0;
+    }
+  }

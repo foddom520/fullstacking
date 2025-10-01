@@ -26,31 +26,59 @@ const UserForm = ({ onSubmit, initialData = {}, isEditing = false, onCancel }) =
         }));
     };
 
+    const cancelButtonStyle = {
+        padding: '5px 10px',
+        backgroundColor: '#6c757d',
+        color: 'white',
+        border: 'none',
+        borderRadius: '3px',
+        cursor: 'pointer'
+    };
+
     return (
         <form onSubmit={handleSubmit} style={{ marginBottom: '30px', border: '1px solid #ccc', padding: '15px' }}>
             <h2>{isEditing ? 'Felhasználó szerkesztése' : 'Új felhasználó hozzáadása'}</h2>
-            <input
-                type="text"
-                name="name"
-                placeholder="Név"
-                value={formData.name}
-                onChange={handleChange}
-                style={{ marginRight: '10px', padding: '5px' }}
-            />
-            <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={handleChange}
-                style={{ marginRight: '10px', padding: '5px' }}
-            />
-            <button type="submit" style={{ padding: '5px 10px', marginRight: '5px' }}>
+            <div style={{ marginBottom: '10px' }}>
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Név"
+                    value={formData.name}
+                    onChange={handleChange}
+                    style={{ marginRight: '10px', padding: '5px', width: '200px' }}
+                />
+            </div>
+            <div style={{ marginBottom: '10px' }}>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    style={{ marginRight: '10px', padding: '5px', width: '200px' }}
+                />
+            </div>
+            <button 
+                type="submit" 
+                style={{ 
+                    padding: '5px 10px', 
+                    marginRight: '5px',
+                    backgroundColor: '#007bff',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '3px',
+                    cursor: 'pointer'
+                }}
+            >
                 {isEditing ? 'Mentés' : 'Hozzáadás'}
             </button>
-            {isEditing && (
-                <button type="button" onClick={onCancel} style={cancelButtonStyle}>
-                    Mégse
+            {(isEditing || onCancel) && (
+                <button 
+                    type="button" 
+                    onClick={onCancel} 
+                    style={cancelButtonStyle}
+                >
+                    {isEditing ? 'Mégse' : 'Mégse'}
                 </button>
             )}
         </form>
